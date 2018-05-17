@@ -1,11 +1,11 @@
 function() {
   	// Add your collector endpoint here
-  	var endpoint = 'https://mathem-data.appspot.com/collect/';
+  	//var endpoint = 'https://myprojectid.appspot.com/collect/';
+  var endpoint = {{datahem collector endpoint}};
 	
 	return function(model) {
-	    var vendor = 'measurementprotocol';
-	    var version = '1';
-	    var path = ((endpoint.substr(-1) !== '/') ? endpoint + '/' : endpoint) + vendor + '/v' + version + '/';
+		//add trackingId to collector path -> https://myprojectid/collect/UA-1234567-89/
+      var path = ((endpoint.substr(-1) !== '/') ? endpoint + '/' : endpoint) + model.get('trackingId') + '/';
 	    
 	    var globalSendTaskName = '_' + model.get('trackingId') + '_sendHitTask';
 	    
@@ -13,7 +13,7 @@ function() {
 	    
 	    model.set('sendHitTask', function(sendModel) {
 	    	var payload = sendModel.get('hitPayload');
-	      	originalSendHitTask(sendModel);
+	      	originalSendHitTask(sendModel);  
 	      	if (navigator.sendBeacon) {
 	      		navigator.sendBeacon(path, payload);
 	  	  	}

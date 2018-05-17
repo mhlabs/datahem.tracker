@@ -1,6 +1,3 @@
-DataHem
-Joint Work Copyright 2018 MatHem Sverige AB and Robert Sahlin
-
 This product includes software developed at
 MathHem Sverige AB (http://www.mathem.se/).
 
