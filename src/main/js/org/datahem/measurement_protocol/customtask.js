@@ -13,8 +13,8 @@ function() {
 	      	var i, len, endpointsArr = endpoints.split(",");
 			for (len = endpointsArr.length, i=0; i<len; ++i) {
 	      		var endpoint = endpointsArr[i];
-	      		//add trackingId to collector path -> https://myprojectid/collect/UA-1234567-89/
-	      		var path = ((endpoint.substr(-1) !== '/') ? endpoint + '/' : endpoint) + model.get('trackingId') + '/';
+	      		//add trackingId to collector path -> https://myprojectid/collect/ua123456789/
+	      		var path = ((endpoint.substr(-1) !== '/') ? endpoint + '/' : endpoint) + model.get('trackingId').replace(/\W/g, '').toLowerCase() + '/';
 		      	if (navigator.sendBeacon) {
 		      		navigator.sendBeacon(path, payload);
 		  	  	}
