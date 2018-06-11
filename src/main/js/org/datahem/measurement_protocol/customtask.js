@@ -7,22 +7,24 @@ function() {
 	    
 	    model.set('sendHitTask', function(sendModel) {
 	    	var payload = sendModel.get('hitPayload');
+          	var body = {};
+          	body['payload'] = payload;
 	      	originalSendHitTask(sendModel);  
 
 			var endpoints = {{datahem collector endpoints}};
 	      	var i, len, endpointsArr = endpoints.split(",");
 			for (len = endpointsArr.length, i=0; i<len; ++i) {
 	      		var endpoint = endpointsArr[i];
-	      		//add trackingId to collector path -> https://myprojectid/collect/ua123456789/
+	      		//add trackingId to collector path -> https://<path>/ua123456789/
 	      		var path = ((endpoint.substr(-1) !== '/') ? endpoint + '/' : endpoint) + model.get('trackingId').replace(/\W/g, '').toLowerCase() + '/';
 		      	if (navigator.sendBeacon) {
-		      		navigator.sendBeacon(path, payload);
+		      		navigator.sendBeacon(path, JSON.stringify(body));
 		  	  	}
 		  	  	else if (typeof new XMLHttpRequest().responseType === 'string') {
 		      		var request = new XMLHttpRequest();
 		        	request.open('POST', path, true);
 		        	request.setRequestHeader('Content-type', 'text/plain; charset=UTF-8');
-		        	request.send(payload);
+		        	request.send(JSON.stringify(body));
 		  		} 
 		  		else {
 		    		var beacon = document.createElement("img");
