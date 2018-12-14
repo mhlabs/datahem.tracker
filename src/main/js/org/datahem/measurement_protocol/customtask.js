@@ -34,7 +34,7 @@ function() {
 		        	if( beacon.onload ){
 		        		beacon.onload  = function(){}; 
 		        	}
-		     		beacon.src = path + '.gif?' + payload;
+		     		beacon.src = path + 'collect.gif?' + payload;
 		    	}
 			}
 
