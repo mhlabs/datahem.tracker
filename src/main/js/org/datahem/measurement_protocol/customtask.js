@@ -9,8 +9,15 @@ function() {
 	    	var payload = sendModel.get('hitPayload');
           	var body = {};
           	body['payload'] = payload;
-	      	originalSendHitTask(sendModel);  
+            //try-catch if payload length exceeds GA:s limit of 8192 bytes
+            try{
+	      	    originalSendHitTask(sendModel);
+            }catch(e){
+          	    console.log("error on payload");
+                console.log(e);
+            }  
 
+            //Add endpoints using google tag manager variable
 			var endpoints = {{datahem collector endpoints}};
 	      	var i, len, endpointsArr = endpoints.split(",");
 			for (len = endpointsArr.length, i=0; i<len; ++i) {
