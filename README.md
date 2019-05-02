@@ -1,8 +1,11 @@
 # datahem.tracker
 
-Piggy-back on your Google Analytics implementation and send data to your own endpoint (datahem.collector)
+Trackers to send data to Datahem collectors.
 
 ## Version
+## 0.7.4 (2019-05-02): Pixel tracker and beacon Trackers
+Fix to clean up pixel and beacon trackers
+
 ## 0.7.3 (2019-02-15): Fix to send data to datahem endpoint with navigator.sendBeacon()
 Added conditions to downgrade gracefully if user agent doesn't support sendbeacon even if it says support it supports sendBeacon.
 Also when beacon chosen as tracker method, always send first hit as xmlhttp POST to enable CORS in some browsers
