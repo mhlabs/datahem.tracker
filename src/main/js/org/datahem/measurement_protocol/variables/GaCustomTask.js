@@ -1,4 +1,5 @@
 //Custom task to copy GA payload and send to DataHem endpoints
+// Use comma separated {{dh collector endpoints}} variable, like https://europe-west1-project1.cloudfunctions.net/webhook?topic=,https://europe-west1-project2.cloudfunctions.net/webhook?topic=
 function() {
 	return function(model) {
 
